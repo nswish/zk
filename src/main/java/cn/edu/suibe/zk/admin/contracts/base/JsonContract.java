@@ -40,4 +40,12 @@ public class JsonContract {
     public Object get(String key) {
         return this.body.get(key);
     }
+
+    public HeadContract getHead() {
+        return head;
+    }
+
+    public Map<String, Object> getBody() {
+        return body;
+    }
 }
