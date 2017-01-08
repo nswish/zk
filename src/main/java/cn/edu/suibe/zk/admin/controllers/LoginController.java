@@ -2,6 +2,9 @@ package cn.edu.suibe.zk.admin.controllers;
 
 import cn.edu.suibe.zk.admin.contracts.LoginContract;
 import cn.edu.suibe.zk.admin.contracts.LogoutContract;
+import cn.edu.suibe.zk.admin.models.User;
+import cn.edu.suibe.zk.admin.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 @Scope("session")
 public class LoginController {
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping("/admin")
     public String show(Model uiModel, HttpServletRequest request) {
         uiModel.addAttribute("message", "hello zks 中文" + request.getSession().getId() +","+request.getSession().getAttribute("uid"));
@@ -28,6 +34,7 @@ public class LoginController {
     @ResponseBody
     public LoginContract login(HttpServletRequest request, @RequestParam String username, @RequestParam String password) {
         LoginContract loginContract = new LoginContract();
+        User user = userRepository.findById(2);
         request.getSession().setAttribute("uid", "1");
         return loginContract;
     }
