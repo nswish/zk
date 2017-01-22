@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by ns on 2017/1/8.
@@ -26,7 +27,8 @@ public class LoginController {
 
     @RequestMapping("/admin")
     public String show(Model uiModel, HttpServletRequest request) {
-        uiModel.addAttribute("message", "hello zks 中文" + request.getSession().getId() +","+request.getSession().getAttribute("uid"));
+        HttpSession session = request.getSession();
+        uiModel.addAttribute("message", "hello zks 中文" + session.getId() +","+ session.getAttribute("uid")+"/"+session.getAttribute("username"));
         return "admin/login/show";
     }
 
@@ -34,8 +36,9 @@ public class LoginController {
     @ResponseBody
     public LoginContract login(HttpServletRequest request, @RequestParam String username, @RequestParam String password) {
         LoginContract loginContract = new LoginContract();
-        User user = userRepository.findById(2);
-        request.getSession().setAttribute("uid", "1");
+        User user = userRepository.findById(1);
+        request.getSession().setAttribute("uid", user.getId());
+        request.getSession().setAttribute("username", user.getName());
         return loginContract;
     }
 
