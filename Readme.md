@@ -1,34 +1,38 @@
-## »·¾³´î½¨
+ï»¿## ç¯å¢ƒæ­å»º
 
-### Ç°ÖÃĞèÇó
+### å‰ç½®éœ€æ±‚
 
 1. JDK8.0
 2. Intellij IDEA 14+
 
-### ³õÊ¼»¯
+### åˆå§‹åŒ–
 
-+ gradlew.bat idea  # ±£Ö¤springboot¿ÉÒÔ±»ideaÖ§³Ö£¬ÆäËûÊ±ºòÈç¹û·¢ÏÖÄ³Ğ©ÒÀÀµÃ»ÓĞimport£¬¿ÉÒÔÔËĞĞÕâ¸öÃüÁî»ñÈ¡
++ gradlew.bat idea  # ä¿è¯springbootå¯ä»¥è¢«ideaæ”¯æŒï¼Œå…¶ä»–æ—¶å€™å¦‚æœå‘ç°æŸäº›ä¾èµ–æ²¡æœ‰importï¼Œå¯ä»¥è¿è¡Œè¿™ä¸ªå‘½ä»¤è·å–
 
-+ gradlew.bat build # ¹¹½¨ÏîÄ¿
++ gradlew.bat build # æ„å»ºé¡¹ç›®
 
-+ ideaÖĞÉèÖÃgradle link project£¬ÅäÖÃ¿ò»áÔÚÏîÄ¿³õ´Î´ò¿ªÊ±×Ô¶¯ÌáÊ¾µÄ
++ ideaä¸­è®¾ç½®gradle link projectï¼Œé…ç½®æ¡†ä¼šåœ¨é¡¹ç›®åˆæ¬¡æ‰“å¼€æ—¶è‡ªåŠ¨æç¤ºçš„
 
-### Æô¶¯·şÎñ
+### å¯åŠ¨æœåŠ¡
 
 + gradlew.bat bootrun
 
-+ »òÕß idea ÖĞ run/debug configuration ÅäÖÃ gradle Æô¶¯ÏîÄ¿ (ÍÆ¼ö£¬ÒòÎª¿ÉÒÔµ÷ÊÔ)
++ æˆ–è€… idea ä¸­ run/debug configuration é…ç½® gradle å¯åŠ¨é¡¹ç›® (æ¨èï¼Œå› ä¸ºå¯ä»¥è°ƒè¯•)
 
-### ÈÈ²¿Êğ
+### éªŒè¯å¯åŠ¨
++ å¯åŠ¨åï¼Œå¹¶ä¸ä¼šå¼¹é¡µé¢ï¼Œéœ€è¦è®¿é—®ä»¥ä¸‹ç½‘å€éªŒè¯å¯åŠ¨æ˜¯å¦ç”Ÿæ•ˆ
++ http://localhost:8080/admin
 
-+ ÔÚideaµÄproject structureÖĞÉèÖÃ±àÒëµÄÊä³öÄ¿Â¼Îªbuild¡£ÏîÄ¿Æô¶¯ºó£¬Í¨¹ımake£¬¼´¿ÉÊµÏÖÈÈ²¿Êğ¡£
+### çƒ­éƒ¨ç½²
 
-## µÚÈı·½¿â
++ åœ¨ideaçš„project structureä¸­è®¾ç½®ç¼–è¯‘çš„è¾“å‡ºç›®å½•ä¸ºbuildã€‚é¡¹ç›®å¯åŠ¨åï¼Œé€šè¿‡makeï¼Œå³å¯å®ç°çƒ­éƒ¨ç½²ã€‚
 
-1. Ä£°æÒıÇæ Thymeleaf http://www.thymeleaf.org/
+## ç¬¬ä¸‰æ–¹åº“
+
+1. æ¨¡ç‰ˆå¼•æ“ Thymeleaf http://www.thymeleaf.org/
 2. SpringBoot https://projects.spring.io/spring-boot/
 
-## ²Î¿¼×ÊÁÏ
+## å‚è€ƒèµ„æ–™
 
-1. ÈçºÎÊ¹ÓÃspringbootÒÔjpaµÄ·½Ê½·ÃÎÊÊı¾İ¿â http://blog.netgloo.com/2014/10/06/spring-boot-data-access-with-jpa-hibernate-and-mysql/
-2. springbootµÄapplication.propertiesÎÄ¼şµÄ³£¼ûÅäÖÃ https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+1. å¦‚ä½•ä½¿ç”¨springbootä»¥jpaçš„æ–¹å¼è®¿é—®æ•°æ®åº“ http://blog.netgloo.com/2014/10/06/spring-boot-data-access-with-jpa-hibernate-and-mysql/
+2. springbootçš„application.propertiesæ–‡ä»¶çš„å¸¸è§é…ç½® https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
