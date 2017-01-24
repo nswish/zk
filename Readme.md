@@ -20,13 +20,13 @@
 + 或者 idea 中 run/debug configuration 配置 gradle 启动项目 (推荐，因为可以调试)
 
 ### 验证启动
-+ 启动后，并不会弹页面，需要访问以下网址验证启动是否生效
++ 启动后，并不会弹页面，需要访问以下网址验证启动是否生效.
 + http://localhost:8080/admin
 
 ### 热更新
 
 + 在idea的project structure中设置编译的输出目录为build。项目启动后，通过make，即可实现有限的热更新。
-+ 结合rebel的热更新.实现在idea中安装jrebel,然后在idea中右键点击ZkApplication.java,在弹出菜单栏中选择 debug/run with jrebel即可.
++ 结合rebel的热更新。先在idea中安装jrebel，然后在idea中右键点击ZkApplication.java，在弹出菜单栏中选择 debug/run with jrebel，会自动生成一个启动配置,如下图:
 
     ![jrebel配置](./doc/img/hotswapconfigure.png)
 
