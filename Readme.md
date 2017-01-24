@@ -23,9 +23,10 @@
 + 启动后，并不会弹页面，需要访问以下网址验证启动是否生效
 + http://localhost:8080/admin
 
-### 热部署
+### 热更新
 
-+ 在idea的project structure中设置编译的输出目录为build。项目启动后，通过make，即可实现热部署。
++ 在idea的project structure中设置编译的输出目录为build。项目启动后，通过make，即可实现有限的热更新。
++ 结合rebel的热更新.实现在idea中安装jrebel,然后在idea中右键点击ZkApplication.java,在弹出菜单栏中选择 debug/run with jrebel即可.
 
 ## 第三方库
 
@@ -36,3 +37,13 @@
 
 1. 如何使用springboot以jpa的方式访问数据库 http://blog.netgloo.com/2014/10/06/spring-boot-data-access-with-jpa-hibernate-and-mysql/
 2. springboot的application.properties文件的常见配置 https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+## 数据库
+
+1. 我家的数据库
+
+    host: radxa.banshujiang.cn
+    port: 3306(默认端口)
+    username: zk
+    password: 321123
+    database: zk
