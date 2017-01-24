@@ -28,6 +28,8 @@
 + 在idea的project structure中设置编译的输出目录为build。项目启动后，通过make，即可实现有限的热更新。
 + 结合rebel的热更新.实现在idea中安装jrebel,然后在idea中右键点击ZkApplication.java,在弹出菜单栏中选择 debug/run with jrebel即可.
 
+    ![jrebel配置](./doc/img/hotswapconfigure.png)
+
 ## 第三方库
 
 1. 模版引擎 Thymeleaf http://www.thymeleaf.org/
