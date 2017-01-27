@@ -5,7 +5,28 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <span th:text="${message}">Hello html</span>
+    <div>
+        <div class="panel panel-primary login-panel">
+            <div class="panel-heading">高校智库-后台管理系统</div>
+            <div class="panel-body">
+                <table class="login-table">
+                    <tr>
+                        <td class="login-username_label">用户名</td>
+                        <td class="login-username_input"><input class="form-control" type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td class="login-password_label">密　码</td>
+                        <td class="login-password_input"><input class="form-control" type="password"/></td>
+                    </tr>
+                    <tr>
+                        <td th:colspan="2" class="login-action">
+                            <a class="btn btn-primary">登　录</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

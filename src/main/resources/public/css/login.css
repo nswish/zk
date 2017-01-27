@@ -1,0 +1,38 @@
+body {
+    background: #efefef;
+}
+
+.login-panel {
+    margin: 200px auto;
+    width: 400px;
+}
+
+.login-table {
+    width: 100%;
+}
+
+.login-table tr {
+    height: 50px;
+}
+
+.login-username_label {
+    text-align: right;
+    width: 25%;
+}
+
+.login-username_input {
+    padding: 0 0 0 10px;
+}
+
+.login-password_label {
+    text-align: right;
+    width: 25%;
+}
+
+.login-password_input {
+    padding: 0 0 0 10px;
+}
+
+.login-action {
+    text-align: center;
+}
