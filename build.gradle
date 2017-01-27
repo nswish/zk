@@ -32,7 +32,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
 	compile('org.webjars:jquery:1.11.3')
+    compile('org.webjars:bootstrap:3.3.7')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

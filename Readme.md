@@ -34,6 +34,7 @@
 
 1. 模版引擎 Thymeleaf http://www.thymeleaf.org/
 2. SpringBoot https://projects.spring.io/spring-boot/
+3. Thymeleaf Layout Dialect https://github.com/ultraq/thymeleaf-layout-dialect
 
 ## 参考资料
 
