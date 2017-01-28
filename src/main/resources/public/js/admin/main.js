@@ -1,24 +1,41 @@
-$(document).ready(function(){
+(function($){
 
     // 登出
-    $("#logout_action").click(function(){
+    function logout() {
         if(!confirm("确定要退出么?")) {
             return;
         }
 
-        var $form = $("<form class='hidden' action='/admin/logout' method='post'></form>");
-        $form.appendTo(document.body).submit();
-    });
+        $("<form class='hidden' action='/admin/logout' method='post'></form>").submit();
+    }
 
     // 分类栏目 折叠/展开
-    $(".panel-heading").click(function(){
+    function categoryFolding() {
         var $this = $(this);
+        var $leftSide = $(".left-side");
 
-        $(".panel-heading").parent().addClass("panel-default").removeClass("panel-primary");
-        $(".panel-body").addClass("panel-body-hidden");
+        // 设置分类栏的选中状态
+        var $leftSidePanels = $leftSide.find(".panel");
+        var $currentPanel = $this.parent();
 
-        $this.parent().removeClass("panel-default").addClass("panel-primary");
-        var $panelBody = $this.parent().find(".panel-body");
-        $panelBody.removeClass("panel-body-hidden");
+        $leftSidePanels.addClass("panel-default").removeClass("panel-primary");
+        $currentPanel.removeClass("panel-default").addClass("panel-primary");
+
+        // 设置分类的折叠/展开
+        var $leftSidePanelBody = $leftSide.find(".panel-body");
+        var $currentPanelBody = $this.parent().find(".panel-body");
+
+        $leftSidePanelBody.addClass("panel-body-hidden");
+        $currentPanelBody.removeClass("panel-body-hidden");
+    }
+
+    $(document).ready(function(){
+
+        // 登出
+        $("#logout_action").click(logout);
+
+        // 分类栏目 折叠/展开
+        $(".panel-heading").click(categoryFolding);
     });
-});
+
+})(jQuery);
