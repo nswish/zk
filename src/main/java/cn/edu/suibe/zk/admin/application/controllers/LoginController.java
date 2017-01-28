@@ -47,12 +47,7 @@ public class LoginController {
                 return "redirect:/admin";
             }
 
-            UserModel userModel = user.getModel();
-            HttpSession session = request.getSession();
-
-            session.setAttribute("uid", userModel.getId());
-            session.setAttribute("username", userModel.getUserName());
-            session.setAttribute("trueName", userModel.getTrueName());
+            request.getSession().setAttribute("user", user);
 
             return "redirect:/admin/main";
         } catch (Exception ex) {

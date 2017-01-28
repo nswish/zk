@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 
 @SuppressWarnings("ALL")
 @Configuration
-public class SpringConfigure {
+public class DomainConfigure {
 
     @Autowired
     private UserRepository userRepository;
