@@ -1,20 +1,21 @@
 package cn.edu.suibe.zk.admin.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by ns on 2017/1/8.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "tb_Users")
 public class User {
 
-    @Id
+    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-
-    private String name;
+    private String userName;
+    private String password;
+    private String trueName;
+    private int roleid;
+    private int state;
 
     public long getId() {
         return id;
@@ -24,11 +25,43 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTrueName() {
+        return trueName;
+    }
+
+    public void setTrueName(String trueName) {
+        this.trueName = trueName;
+    }
+
+    public int getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

@@ -36,9 +36,10 @@ public class LoginController {
     @ResponseBody
     public LoginContract login(HttpServletRequest request, @RequestParam String username, @RequestParam String password) {
         LoginContract loginContract = new LoginContract();
-        User user = userRepository.findById(1);
+        User user = userRepository.findById(3);
         request.getSession().setAttribute("uid", user.getId());
-        request.getSession().setAttribute("username", user.getName());
+        request.getSession().setAttribute("username", user.getUserName());
+        request.getSession().setAttribute("truename", user.getTrueName());
         return loginContract;
     }
 
