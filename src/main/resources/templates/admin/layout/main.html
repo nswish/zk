@@ -14,7 +14,7 @@
             </div>
 
             <p class="navbar-text navbar-right">
-               当前用户: <span th:text="${session.user.model.trueName}"/> | <a href="#" class="navbar-link login-out">退出</a>
+               当前用户: <span th:text="${session.user.model.trueName}"/> | <a id="logout_action" href="javascript:;" class="navbar-link login-out">退出</a>
             </p>
         </div>
     </nav>
@@ -25,5 +25,6 @@
 
     <script src="/webjars/jquery/1.11.3/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/admin/main.js(release=${@Constants.Release})}"></script>
 </body>
 </html>

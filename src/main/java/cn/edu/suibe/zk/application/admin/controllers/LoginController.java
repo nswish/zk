@@ -1,12 +1,9 @@
-package cn.edu.suibe.zk.admin.application.controllers;
+package cn.edu.suibe.zk.application.admin.controllers;
 
-import cn.edu.suibe.zk.admin.application.contracts.LoginContract;
-import cn.edu.suibe.zk.admin.application.contracts.LogoutContract;
-import cn.edu.suibe.zk.admin.application.controllers.forms.LoginForm;
-import cn.edu.suibe.zk.admin.domain.domains.User;
-import cn.edu.suibe.zk.admin.domain.models.UserModel;
-import cn.edu.suibe.zk.admin.domain.repositories.UserRepository;
-import cn.edu.suibe.zk.common.exceptions.BaseException;
+import cn.edu.suibe.zk.application.admin.contracts.LogoutContract;
+import cn.edu.suibe.zk.application.admin.controllers.forms.LoginForm;
+import cn.edu.suibe.zk.domain.domains.User;
+import cn.edu.suibe.zk.domain.repositories.UserRepository;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * Created by ns on 2017/1/8.
@@ -56,11 +52,9 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/admin/logout")
-    @ResponseBody
-    public LogoutContract logout(HttpServletRequest request) {
-        LogoutContract logoutContract = new LogoutContract();
+    @RequestMapping(value = "/admin/logout", method = RequestMethod.POST)
+    public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
-        return logoutContract;
+        return "redirect:/admin";
     }
 }

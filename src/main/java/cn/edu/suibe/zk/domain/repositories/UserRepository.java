@@ -1,8 +1,7 @@
-package cn.edu.suibe.zk.admin.domain.repositories;
+package cn.edu.suibe.zk.domain.repositories;
 
-import cn.edu.suibe.zk.admin.domain.models.UserModel;
+import cn.edu.suibe.zk.domain.models.UserModel;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by ns on 2017/1/8.

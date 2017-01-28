@@ -1,6 +1,6 @@
-package cn.edu.suibe.zk.admin.domain.domains;
+package cn.edu.suibe.zk.domain.domains;
 
-import cn.edu.suibe.zk.admin.domain.models.UserModel;
+import cn.edu.suibe.zk.domain.models.UserModel;
 
 public class User {
     public static final User LOGIN_ERROR_USER = new User(null);

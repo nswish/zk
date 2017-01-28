@@ -1,4 +1,4 @@
-package cn.edu.suibe.zk.admin.application.controllers.forms;
+package cn.edu.suibe.zk.application.admin.controllers.forms;
 
 public class LoginForm {
     private String username;

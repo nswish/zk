@@ -1,4 +1,4 @@
-package cn.edu.suibe.zk.admin.domain.models;
+package cn.edu.suibe.zk.domain.models;
 
 import javax.persistence.*;
 

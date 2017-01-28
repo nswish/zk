@@ -1,4 +1,4 @@
-package cn.edu.suibe.zk.admin.application.interceptors;
+package cn.edu.suibe.zk.application.admin.interceptors;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

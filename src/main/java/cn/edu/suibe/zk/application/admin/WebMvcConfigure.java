@@ -1,6 +1,6 @@
-package cn.edu.suibe.zk.admin.application;
+package cn.edu.suibe.zk.application.admin;
 
-import cn.edu.suibe.zk.admin.application.interceptors.AuthInterceptor;
+import cn.edu.suibe.zk.application.admin.interceptors.AuthInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -1,8 +1,8 @@
-package cn.edu.suibe.zk.admin.domain;
+package cn.edu.suibe.zk.domain;
 
-import cn.edu.suibe.zk.admin.domain.domains.User;
-import cn.edu.suibe.zk.admin.domain.models.UserModel;
-import cn.edu.suibe.zk.admin.domain.repositories.UserRepository;
+import cn.edu.suibe.zk.domain.domains.User;
+import cn.edu.suibe.zk.domain.models.UserModel;
+import cn.edu.suibe.zk.domain.repositories.UserRepository;
 import cn.edu.suibe.zk.common.exceptions.DomainException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

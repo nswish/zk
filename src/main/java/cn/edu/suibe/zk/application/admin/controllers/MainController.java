@@ -1,4 +1,4 @@
-package cn.edu.suibe.zk.admin.application.controllers;
+package cn.edu.suibe.zk.application.admin.controllers;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;

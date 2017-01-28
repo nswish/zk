@@ -1,4 +1,4 @@
-package cn.edu.suibe.zk.admin.application.contracts.base;
+package cn.edu.suibe.zk.application.admin.contracts.base;
 
 import java.util.HashMap;
 import java.util.Map;
