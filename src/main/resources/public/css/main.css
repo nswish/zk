@@ -1,7 +1,21 @@
+/* 更改Bootstrap样式 */
+.panel-body {
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.panel-body-hidden {
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Layout样式 */
 .login-out {
     margin-right: 20px;
 }
 
+/* 页面样式 */
 .left-side {
     width: 250px;
     float: left;
@@ -11,4 +25,8 @@
 .main-content {
     margin-left: 250px;
     padding: 0 10px;
+}
+
+.category {
+    margin: 0;
 }
