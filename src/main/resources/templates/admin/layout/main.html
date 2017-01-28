@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>后台管理-上海对外经贸大学-高校智库</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">上海对外经贸大学-高校智库</a>
+            </div>
+
+            <p class="navbar-text navbar-right">
+               当前用户: <span th:text="${session.user.model.trueName}"/> | <a href="#" class="navbar-link login-out">退出</a>
+            </p>
+        </div>
+    </nav>
+
+    <div layout:fragment="content">
+        content
+    </div>
+
+    <script src="/webjars/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

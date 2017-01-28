@@ -38,8 +38,9 @@
 
 ## 参考资料
 
-1. 如何使用springboot以jpa的方式访问数据库 http://blog.netgloo.com/2014/10/06/spring-boot-data-access-with-jpa-hibernate-and-mysql/
-2. springboot的application.properties文件的常见配置 https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+1. Sprint MVC Reference https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html
+2. 如何使用springboot以jpa的方式访问数据库 http://blog.netgloo.com/2014/10/06/spring-boot-data-access-with-jpa-hibernate-and-mysql/
+3. springboot的application.properties文件的常见配置 https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
 ## 数据库
 

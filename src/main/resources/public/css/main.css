@@ -1,0 +1,14 @@
+.login-out {
+    margin-right: 20px;
+}
+
+.left-side {
+    width: 250px;
+    float: left;
+    padding: 0 10px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 0 10px;
+}
