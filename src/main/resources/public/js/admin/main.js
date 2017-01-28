@@ -29,6 +29,14 @@
         $currentPanelBody.removeClass("panel-body-hidden");
     }
 
+    // iframe高度设定
+    function iframeAutoHeight(){
+        var $iframe = $(this);
+        var contentDocument = this.contentDocument || this.Document;
+
+        $iframe.height(contentDocument.body.offsetHeight || contentDocument.body.scrollHeight);
+    }
+
     $(document).ready(function(){
 
         // 登出
@@ -36,6 +44,9 @@
 
         // 分类栏目 折叠/展开
         $(".panel-heading").click(categoryFolding);
+
+        // iframe高度设定
+        $("iframe").on("load", iframeAutoHeight);
     });
 
 })(jQuery);

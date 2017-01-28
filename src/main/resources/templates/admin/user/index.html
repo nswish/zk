@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="admin/layout/blank">
+<head>
+    <title>后台管理-上海对外经贸大学-高校智库</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <table class="table table-bordered table-hover table-striped" style="width:100%;">
+            <tr>
+                <th style="width: 50px;text-align: right;">ID</th>
+                <th>用户名</th>
+                <th>昵称</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.model.id}" style="text-align: right;">1</td>
+                <td th:text="${user.model.userName}">lei.gu</td>
+                <td th:text="${user.model.trueName}">gu lei</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
