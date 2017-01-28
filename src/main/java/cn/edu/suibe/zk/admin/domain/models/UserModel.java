@@ -1,4 +1,4 @@
-package cn.edu.suibe.zk.admin.models;
+package cn.edu.suibe.zk.admin.domain.models;
 
 import javax.persistence.*;
 
@@ -7,9 +7,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "tb_Users")
-public class User {
+public class UserModel {
 
-    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String userName;
     private String password;

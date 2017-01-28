@@ -1,4 +1,4 @@
-package cn.edu.suibe.zk.admin.contracts.base;
+package cn.edu.suibe.zk.admin.application.contracts.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
