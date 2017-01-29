@@ -1,6 +1,5 @@
 package cn.edu.suibe.zk.application.admin.controllers;
 
-import cn.edu.suibe.zk.application.admin.contracts.LogoutContract;
 import cn.edu.suibe.zk.application.admin.controllers.forms.LoginForm;
 import cn.edu.suibe.zk.domain.domains.User;
 import cn.edu.suibe.zk.domain.repositories.UserRepository;
@@ -10,7 +9,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +36,7 @@ public class LoginController {
         try {
             User user = beanFactory.getBean(User.class, loginForm.getUsername(), loginForm.getPassword());
 
-            if(user == User.LOGIN_ERROR_USER) {
+            if(user == User.AUTHENTICATE_FAILED_USER) {
                 redirectAttributes.addFlashAttribute("errorMessage", "用户名或者密码错误!");
                 return "redirect:/admin";
             }
