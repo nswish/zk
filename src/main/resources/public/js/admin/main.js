@@ -37,8 +37,13 @@
         $iframe.height(contentDocument.body.offsetHeight || contentDocument.body.scrollHeight);
     }
 
-    $(document).ready(function(){
+    // Notify
+    function notify() {
+        $.notify.apply(null, arguments);
+    }
 
+    // 绑定事件
+    function bindEvent() {
         // 登出
         $("#logout_action").click(logout);
 
@@ -47,6 +52,10 @@
 
         // iframe高度设定
         $("iframe").on("load", iframeAutoHeight);
-    });
+    }
 
+    bindEvent();
+
+    // 输出$notify到全局作用域,可供iframe子页面调用
+    window.$notify = notify;
 })(jQuery);

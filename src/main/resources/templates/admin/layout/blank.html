@@ -14,5 +14,13 @@
     <script src="/webjars/jquery/1.11.3/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <div layout:fragment="jsScript"></div>
+
+    <div th:if="${redirectMessage}">
+        <span id="redirectMessage" class="hidden" th:text="${redirectMessage}"></span>
+        <script>
+            var message = $("#redirectMessage").text(); //console.log({ message: message});
+            parent.$notify({message: message});
+        </script>
+    </div>
 </body>
 </html>

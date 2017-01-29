@@ -37,6 +37,7 @@
 3. Thymeleaf Layout Dialect https://github.com/ultraq/thymeleaf-layout-dialect
 4. BootStrap http://getbootstrap.com/
 5. WebJars http://www.webjars.org/
+6. BootStrap-Notify http://bootstrap-notify.remabledesigns.com/
 
 ## 参考资料
 

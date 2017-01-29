@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
@@ -73,10 +74,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/users/{id}/delete", method = RequestMethod.POST)
-    public String deleteUser(@PathVariable int id) {
+    public String deleteUser(@PathVariable int id, RedirectAttributes redirectAttributes) {
         User user = (User)beanFactory.getBean("findUserById", id);
 
         user.delete();
+
+        redirectAttributes.addFlashAttribute("redirectMessage", String.format("用户[%s]已删除!", user.getModel().getUserName()));
 
         return "redirect:/admin/users";
     }
