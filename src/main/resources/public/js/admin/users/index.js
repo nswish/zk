@@ -13,6 +13,10 @@
 
     // 删除用户
     function deleteUser() {
+        if(!confirm("确定要删除用户么?")) {
+            return;
+        }
+
         var $this = $(this);
         var id = $this.data("id");
         var $form = $("<form action='/admin/users/" + id + "/delete' method='post'></form>")
