@@ -36,6 +36,7 @@
 2. SpringBoot https://projects.spring.io/spring-boot/
 3. Thymeleaf Layout Dialect https://github.com/ultraq/thymeleaf-layout-dialect
 4. BootStrap http://getbootstrap.com/
+5. WebJars http://www.webjars.org/
 
 ## 参考资料
 
