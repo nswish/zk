@@ -7,6 +7,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,12 +26,12 @@ public class UserController {
         return "/admin/user/index";
     }
 
-    @RequestMapping(value = "admin/user/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/users/create", method = RequestMethod.GET)
     public String showCreate(UserForm userForm) {
         return "/admin/user/create";
     }
 
-    @RequestMapping(value = "admin/user/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/users/create", method = RequestMethod.POST)
     public String saveCreate(UserForm userForm, Model uiModel) {
         User newUser = beanFactory.getBean("newUser", User.class);
 
@@ -40,6 +41,34 @@ public class UserController {
 
         newUser.save();
 
-        return "redirect:/admin/user/create";
+        return "redirect:/admin/users/create";
+    }
+
+    @RequestMapping(value = "/admin/users/{id}/edit", method = RequestMethod.GET)
+    public String showEdit(@PathVariable int id, UserForm userForm) {
+        User user = (User)beanFactory.getBean("findUserById", id);
+        UserModel model = user.getModel();
+
+        userForm.setId(id);
+        userForm.setUserName(model.getUserName());
+        userForm.setTrueName(model.getTrueName());
+        userForm.setEmail(model.getEmail());
+        userForm.setTelephone(model.getTelephone());
+
+        return "/admin/user/edit";
+    }
+
+    @RequestMapping(value ="/admin/users/{id}/edit", method = RequestMethod.POST)
+    public String saveEdit(@PathVariable int id, UserForm userForm) {
+        User user = (User)beanFactory.getBean("findUserById", id);
+        UserModel model = user.getModel();
+
+        model.setTrueName(userForm.getTrueName());
+        model.setEmail(userForm.getEmail());
+        model.setTelephone(userForm.getTelephone());
+
+        user.save();
+
+        return String.format("redirect:/admin/users/%d/edit", id);
     }
 }

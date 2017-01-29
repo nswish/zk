@@ -18,14 +18,14 @@ public class DomainConfigure {
     @Bean(name = "authenticate")
     @Scope("prototype")
     @Lazy
-    User getUser(String userName, String password) {
+    User authenticate(String userName, String password) {
         return User.authenticate(this.userRepository, userName, password);
     }
 
     @Bean(name = "findAllUsers")
     @Scope("prototype")
     @Lazy
-    User[] getUsers() {
+    User[] findAllUsers() {
         return User.findAllUsers(this.userRepository);
     }
 
@@ -34,5 +34,12 @@ public class DomainConfigure {
     @Lazy
     User newUser() {
         return User.newUser();
+    }
+
+    @Bean(name = "findUserById")
+    @Scope("prototype")
+    @Lazy
+    User findUserById(int id) {
+        return User.findUserById(this.userRepository, id);
     }
 }

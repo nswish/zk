@@ -53,6 +53,18 @@ public class User {
     }
 
     /**
+     * 查找指定ID的用户信息
+     *
+     * @param userRepository
+     * @param id
+     * @return
+     */
+    public static User findUserById(UserRepository userRepository, int id) {
+        UserModel userModel = userRepository.findById(id);
+        return new User(userModel);
+    }
+
+    /**
      * 创建一个空的用户对象
      *
      * @return

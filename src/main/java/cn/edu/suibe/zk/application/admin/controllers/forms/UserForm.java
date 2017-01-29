@@ -4,11 +4,20 @@ package cn.edu.suibe.zk.application.admin.controllers.forms;
  * Created by ns on 2017/1/29.
  */
 public class UserForm {
+    private int id;
     private String userName;
     private String password;
     private String trueName;
     private String email;
     private String telephone;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUserName() {
         return userName;

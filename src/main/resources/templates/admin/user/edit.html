@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="admin/layout/blank">
+<head>
+    <link rel="stylesheet" th:href="@{/css/user/edit.css(release=${@Constants.Release})}"/>
+</head>
+<body>
+    <div layout:fragment="content">
+        <form class="form-horizontal user-edit-form" th:action="@{/admin/users/{id}/edit(id=${userForm.id})}" th:method="post" th:object="${userForm}">
+            <div class="form-group">
+                <label for="userName" class="col-sm-3 control-label">用户名</label>
+                <div class="col-sm-9">
+                    <input type="text" th:readonly="true" class="form-control" id="userName" placeholder="用户名" th:field="*{userName}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="trueName" class="col-sm-3 control-label">姓名</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="trueName" placeholder="姓名" th:field="*{trueName}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">邮箱</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="email" placeholder="邮箱" th:field="*{email}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="telephone" class="col-sm-3 control-label">电话</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="telephone" placeholder="电话" th:field="*{telephone}"/>
+                </div>
+            </div>
+            <div class="form-group clear-margin-bottom">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button id="save" type="submit" class="btn btn-primary btn-sm">保存</button>
+                    <button id="cancel" type="button" class="btn btn-default btn-sm">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div layout:fragment="jsScript">
+        <script th:src="@{/js/admin/user/edit.js(release=${@Constants.Release})}"></script>
+    </div>
+</body>
+</html>

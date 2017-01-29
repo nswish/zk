@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="admin/layout/blank">
+<head>
+    <link rel="stylesheet" th:href="@{/css/user/index.css(release=${@Constants.Release})}"/>
+</head>
 <body>
     <div layout:fragment="content">
-        <table class="table table-bordered table-hover table-striped" style="width:100%;">
+        <table class="table table-bordered table-hover table-striped user-table">
             <tr>
                 <th style="width: 40px;text-align: right;">#</th>
                 <th>用户名</th>
                 <th>姓名</th>
                 <th>邮箱</th>
                 <th>联系电话</th>
+                <th>操作</th>
             </tr>
             <tr th:each="user,iterStat : ${users}">
                 <td th:text="${iterStat.index + 1}" style="text-align: right;">1</td>
@@ -16,6 +20,7 @@
                 <td th:text="${user.model.trueName}">gu lei</td>
                 <td th:text="${user.model.email}">lei.gu@163.com</td>
                 <td th:text="${user.model.telephone}">13313131313</td>
+                <td><a data-action="edit" th:attr="data-id=${user.model.id}" href="javascript:;">编辑</a></td>
             </tr>
         </table>
 

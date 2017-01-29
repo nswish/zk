@@ -5,7 +5,7 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <form class="form-horizontal user-create-form" th:action="@{/admin/user/create}" th:method="post" th:object="${userForm}">
+        <form class="form-horizontal user-create-form" th:action="@{/admin/users/create}" th:method="post" th:object="${userForm}">
             <div class="form-group">
                 <label for="userName" class="col-sm-3 control-label">用户名</label>
                 <div class="col-sm-9">
