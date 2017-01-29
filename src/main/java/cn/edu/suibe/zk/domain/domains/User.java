@@ -80,6 +80,13 @@ public class User {
         this.userRepository.save(this.model);
     }
 
+    /**
+     * 删除用户信息
+     */
+    public void delete() {
+        this.userRepository.delete(this.model);
+    }
+
     public User(UserModel model) {
         this.model = model;
     }

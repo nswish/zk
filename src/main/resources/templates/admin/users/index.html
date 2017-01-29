@@ -20,7 +20,11 @@
                 <td th:text="${user.model.trueName}">gu lei</td>
                 <td th:text="${user.model.email}">lei.gu@163.com</td>
                 <td th:text="${user.model.telephone}">13313131313</td>
-                <td><a data-action="edit" th:attr="data-id=${user.model.id}" href="javascript:;">编辑</a></td>
+                <td>
+                    <a data-action="edit" th:attr="data-id=${user.model.id}" href="javascript:;">编辑</a>
+                    <a data-action="delete" th:attr="data-id=${user.model.id}" href="javascript:;">删除</a>
+                    <a data-action="resetPassword" th:attr="data-id=${user.model.id}" href="javascript:;">重置密码</a>
+                </td>
             </tr>
         </table>
 

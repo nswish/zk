@@ -71,4 +71,13 @@ public class UserController {
 
         return String.format("redirect:/admin/users/%d/edit", id);
     }
+
+    @RequestMapping(value = "/admin/users/{id}/delete", method = RequestMethod.POST)
+    public String deleteUser(@PathVariable int id) {
+        User user = (User)beanFactory.getBean("findUserById", id);
+
+        user.delete();
+
+        return "redirect:/admin/users";
+    }
 }
