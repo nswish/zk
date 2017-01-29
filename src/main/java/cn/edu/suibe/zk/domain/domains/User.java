@@ -77,6 +77,14 @@ public class User {
      * 保存用户对象
      */
     public void save() {
+        if(this.model.getId() == 0) {
+            UserModel userModel = this.userRepository.findByUserName(this.model.getUserName());
+
+            if(userModel != null) {
+                throw new DomainException(String.format("数据库中已存在[%s]用户!", this.model.getUserName()));
+            }
+        }
+
         this.userRepository.save(this.model);
     }
 

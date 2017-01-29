@@ -33,16 +33,22 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/users/create", method = RequestMethod.POST)
-    public String saveCreate(UserForm userForm, Model uiModel) {
+    public String saveCreate(UserForm userForm, RedirectAttributes redirectAttributes) {
         User newUser = beanFactory.getBean("newUser", User.class);
 
         UserModel model = newUser.getModel();
         model.setUserName(userForm.getUserName());
         model.setPassword(userForm.getPassword());
 
-        newUser.save();
+        try {
+            newUser.save();
 
-        return "redirect:/admin/users/create";
+            redirectAttributes.addFlashAttribute("redirectMessage", String.format("用户[%s]已保存!", userForm.getUserName()));
+            return "redirect:/admin/users";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("redirectMessage", ex.getMessage());
+            return "redirect:/admin/users/create";
+        }
     }
 
     @RequestMapping(value = "/admin/users/{id}/edit", method = RequestMethod.GET)
