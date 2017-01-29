@@ -16,7 +16,7 @@ public class UserController {
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String index(Model uiModel) {
-        User[] users = beanFactory.getBean(User[].class);
+        User[] users = beanFactory.getBean("findAllUsers", User[].class);
         uiModel.addAttribute("users", users);
         return "/admin/user/index";
     }

@@ -15,14 +15,14 @@ public class DomainConfigure {
     @Autowired
     private UserRepository userRepository;
 
-    @Bean
+    @Bean(name = "authenticate")
     @Scope("prototype")
     @Lazy
     User getUser(String userName, String password) {
         return User.authenticate(this.userRepository, userName, password);
     }
 
-    @Bean
+    @Bean(name = "findAllUsers")
     @Scope("prototype")
     @Lazy
     User[] getUsers() {

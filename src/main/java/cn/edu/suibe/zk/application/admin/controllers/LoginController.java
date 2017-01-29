@@ -2,7 +2,6 @@ package cn.edu.suibe.zk.application.admin.controllers;
 
 import cn.edu.suibe.zk.application.admin.controllers.forms.LoginForm;
 import cn.edu.suibe.zk.domain.domains.User;
-import cn.edu.suibe.zk.domain.repositories.UserRepository;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @Scope("session")
 public class LoginController {
-
-    @Autowired
-    private UserRepository userRepository;
-
     @Autowired
     private BeanFactory beanFactory;
 
@@ -34,7 +29,7 @@ public class LoginController {
     @RequestMapping(value="/admin/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, LoginForm loginForm, RedirectAttributes redirectAttributes) {
         try {
-            User user = beanFactory.getBean(User.class, loginForm.getUsername(), loginForm.getPassword());
+            User user = (User)beanFactory.getBean("authenticate", loginForm.getUsername(), loginForm.getPassword());
 
             if(user == User.AUTHENTICATE_FAILED_USER) {
                 redirectAttributes.addFlashAttribute("errorMessage", "用户名或者密码错误!");
