@@ -7,10 +7,13 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -33,20 +36,29 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/users/create", method = RequestMethod.POST)
-    public String saveCreate(UserForm userForm, RedirectAttributes redirectAttributes) {
+    public String saveCreate(@Valid UserForm userForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message", bindingResult.getFieldError().getDefaultMessage());
+            redirectAttributes.addFlashAttribute("userForm", userForm);
+            return "redirect:/admin/users/create";
+        }
+
         User newUser = beanFactory.getBean("newUser", User.class);
 
         UserModel model = newUser.getModel();
         model.setUserName(userForm.getUserName());
         model.setPassword(userForm.getPassword());
+        model.setTrueName(userForm.getTrueName());
+        model.setEmail(userForm.getEmail());
+        model.setTelephone(userForm.getTelephone());
 
         try {
             newUser.save();
 
-            redirectAttributes.addFlashAttribute("redirectMessage", String.format("用户[%s]已保存!", userForm.getUserName()));
+            redirectAttributes.addFlashAttribute("message", String.format("用户[%s]已保存!", userForm.getUserName()));
             return "redirect:/admin/users";
         } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("redirectMessage", ex.getMessage());
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
             return "redirect:/admin/users/create";
         }
     }
@@ -85,7 +97,7 @@ public class UserController {
 
         user.delete();
 
-        redirectAttributes.addFlashAttribute("redirectMessage", String.format("用户[%s]已删除!", user.getModel().getUserName()));
+        redirectAttributes.addFlashAttribute("message", String.format("用户[%s]已删除!", user.getModel().getUserName()));
 
         return "redirect:/admin/users";
     }

@@ -14,10 +14,10 @@
     <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <div layout:fragment="jsScript"></div>
 
-    <div th:if="${redirectMessage}">
-        <span id="redirectMessage" class="hidden" th:text="${redirectMessage}"></span>
+    <div th:if="${message}">
+        <span id="message" class="hidden" th:text="${message}"></span>
         <script>
-            var message = $("#redirectMessage").text(); //console.log({ message: message});
+            var message = $("#message").text(); //console.log({ message: message});
             parent.$notify({message: message});
         </script>
     </div>
