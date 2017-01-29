@@ -28,4 +28,11 @@ public class DomainConfigure {
     User[] getUsers() {
         return User.findAllUsers(this.userRepository);
     }
+
+    @Bean(name = "newUser")
+    @Scope("prototype")
+    @Lazy
+    User newUser() {
+        return User.newUser();
+    }
 }

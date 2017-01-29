@@ -3,6 +3,7 @@ package cn.edu.suibe.zk.domain.domains;
 import cn.edu.suibe.zk.common.exceptions.DomainException;
 import cn.edu.suibe.zk.domain.models.UserModel;
 import cn.edu.suibe.zk.domain.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -12,6 +13,9 @@ public class User {
     public static final User AUTHENTICATE_FAILED_USER = new User(null);
 
     private UserModel model;
+
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * 用户信息鉴权
@@ -46,6 +50,22 @@ public class User {
                 .map(model -> new User(model))
                 .toArray(User[]::new);
         return users;
+    }
+
+    /**
+     * 创建一个空的用户对象
+     *
+     * @return
+     */
+    public static User newUser() {
+        return new User(new UserModel());
+    }
+
+    /**
+     * 保存用户对象
+     */
+    public void save() {
+        this.userRepository.save(this.model);
     }
 
     public User(UserModel model) {

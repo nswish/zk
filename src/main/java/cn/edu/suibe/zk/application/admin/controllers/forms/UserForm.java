@@ -1,31 +1,14 @@
-package cn.edu.suibe.zk.domain.models;
-
-import javax.persistence.*;
+package cn.edu.suibe.zk.application.admin.controllers.forms;
 
 /**
- * Created by ns on 2017/1/8.
+ * Created by ns on 2017/1/29.
  */
-@Entity
-@Table(name = "tb_Users")
-public class UserModel {
-
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
+public class UserForm {
     private String userName;
     private String password;
     private String trueName;
     private String email;
     private String telephone;
-    private int roleid;
-    private int state;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;
@@ -49,22 +32,6 @@ public class UserModel {
 
     public void setTrueName(String trueName) {
         this.trueName = trueName;
-    }
-
-    public int getRoleid() {
-        return roleid;
-    }
-
-    public void setRoleid(int roleid) {
-        this.roleid = roleid;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public String getEmail() {

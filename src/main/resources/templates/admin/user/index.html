@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="admin/layout/blank">
-<head>
-    <title>后台管理-上海对外经贸大学-高校智库</title>
-</head>
 <body>
     <div layout:fragment="content">
         <table class="table table-bordered table-hover table-striped" style="width:100%;">
             <tr>
-                <th style="width: 50px;text-align: right;">ID</th>
+                <th style="width: 40px;text-align: right;">#</th>
                 <th>用户名</th>
-                <th>昵称</th>
+                <th>姓名</th>
+                <th>邮箱</th>
+                <th>联系电话</th>
             </tr>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.model.id}" style="text-align: right;">1</td>
+            <tr th:each="user,iterStat : ${users}">
+                <td th:text="${iterStat.index + 1}" style="text-align: right;">1</td>
                 <td th:text="${user.model.userName}">lei.gu</td>
                 <td th:text="${user.model.trueName}">gu lei</td>
+                <td th:text="${user.model.email}">lei.gu@163.com</td>
+                <td th:text="${user.model.telephone}">13313131313</td>
             </tr>
         </table>
+
+        <div>
+            <button id="add_user" type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增
+            </button>
+        </div>
+    </div>
+
+    <div layout:fragment="jsScript">
+        <script th:src="@{/js/admin/user/index.js(release=${@Constants.Release})}"></script>
     </div>
 </body>
 </html>

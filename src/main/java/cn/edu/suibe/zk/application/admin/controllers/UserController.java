@@ -1,6 +1,8 @@
 package cn.edu.suibe.zk.application.admin.controllers;
 
+import cn.edu.suibe.zk.application.admin.controllers.forms.UserForm;
 import cn.edu.suibe.zk.domain.domains.User;
+import cn.edu.suibe.zk.domain.models.UserModel;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,27 @@ public class UserController {
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String index(Model uiModel) {
         User[] users = beanFactory.getBean("findAllUsers", User[].class);
+
         uiModel.addAttribute("users", users);
+
         return "/admin/user/index";
+    }
+
+    @RequestMapping(value = "admin/user/create", method = RequestMethod.GET)
+    public String showCreate(UserForm userForm) {
+        return "/admin/user/create";
+    }
+
+    @RequestMapping(value = "admin/user/create", method = RequestMethod.POST)
+    public String saveCreate(UserForm userForm, Model uiModel) {
+        User newUser = beanFactory.getBean("newUser", User.class);
+
+        UserModel model = newUser.getModel();
+        model.setUserName(userForm.getUserName());
+        model.setPassword(userForm.getPassword());
+
+        newUser.save();
+
+        return "redirect:/admin/user/create";
     }
 }
