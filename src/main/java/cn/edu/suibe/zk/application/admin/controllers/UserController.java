@@ -23,12 +23,12 @@ public class UserController {
 
         uiModel.addAttribute("users", users);
 
-        return "/admin/user/index";
+        return "/admin/users/index";
     }
 
     @RequestMapping(value = "/admin/users/create", method = RequestMethod.GET)
     public String showCreate(UserForm userForm) {
-        return "/admin/user/create";
+        return "/admin/users/create";
     }
 
     @RequestMapping(value = "/admin/users/create", method = RequestMethod.POST)
@@ -55,7 +55,7 @@ public class UserController {
         userForm.setEmail(model.getEmail());
         userForm.setTelephone(model.getTelephone());
 
-        return "/admin/user/edit";
+        return "/admin/users/edit";
     }
 
     @RequestMapping(value ="/admin/users/{id}/edit", method = RequestMethod.POST)

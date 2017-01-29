@@ -11,6 +11,6 @@ public class MainController {
 
     @RequestMapping(value = "/admin/main", method = RequestMethod.GET)
     public String show(HttpServletRequest request, RedirectAttributes redirectAttributes) {
-        return "admin/main/show";
+        return "/admin/main/show";
     }
 }
