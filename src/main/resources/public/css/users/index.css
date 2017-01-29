@@ -1,3 +1,7 @@
 .user-table {
     width:100%;
 }
+
+a[data-action] {
+    font-size: 12px;
+}
