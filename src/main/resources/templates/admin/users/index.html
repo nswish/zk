@@ -12,6 +12,7 @@
                 <th>姓名</th>
                 <th>邮箱</th>
                 <th>联系电话</th>
+                <th>审核状态</th>
                 <th>操作</th>
             </tr>
             <tr th:each="user,iterStat : ${users}">
@@ -20,6 +21,7 @@
                 <td th:text="${user.model.trueName}">gu lei</td>
                 <td th:text="${user.model.email}">lei.gu@163.com</td>
                 <td th:text="${user.model.telephone}">13313131313</td>
+                <td th:text="${@Conversions.userStateDesc(user.model.state)}">未审核</td>
                 <td>
                     <a class="glyphicon glyphicon-pencil" th:title="编辑" data-action="edit" th:attr="data-id=${user.model.id}" href="javascript:;"></a>
                     <a class="glyphicon glyphicon-remove" th:title="删除" data-action="delete" th:attr="data-id=${user.model.id}" href="javascript:;"></a>
