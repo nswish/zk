@@ -18,6 +18,20 @@ public class User {
     private UserRepository userRepository;
 
     /**
+     * 转换密码
+     * @param password
+     * @return
+     */
+    public static String convertPassword(String password) {
+        try {
+            String passwordMD5 = DigestUtils.md5DigestAsHex(password.getBytes("UTF-8"));
+            return passwordMD5;
+        } catch (UnsupportedEncodingException e) {
+            throw new DomainException("转换密码失败", e);
+        }
+    }
+
+    /**
      * 用户信息鉴权
      *
      * @param userRepository
@@ -26,16 +40,12 @@ public class User {
      * @return
      */
     public static User authenticate(UserRepository userRepository, String userName, String password) {
-        try {
-            String passwordMD5 = DigestUtils.md5DigestAsHex(password.getBytes("UTF-8"));
-            UserModel userModel = userRepository.findByUserName(userName);
-            if(passwordMD5.equalsIgnoreCase(userModel.getPassword())) {
-                return new User(userModel);
-            } else {
-                return User.AUTHENTICATE_FAILED_USER;
-            }
-        } catch (UnsupportedEncodingException e) {
-            throw new DomainException("密码的Encoding不是UTF8", e);
+        String passwordMD5 = convertPassword(password);
+        UserModel userModel = userRepository.findByUserName(userName);
+        if(passwordMD5.equalsIgnoreCase(userModel.getPassword())) {
+            return new User(userModel);
+        } else {
+            return User.AUTHENTICATE_FAILED_USER;
         }
     }
 

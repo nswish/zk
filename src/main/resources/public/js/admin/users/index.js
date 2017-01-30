@@ -24,6 +24,12 @@
         $form.submit();
     }
 
+    // 设置密码按钮跳转
+    function jumpToResetPassword() {
+        var $this = $(this);
+        location.href = "/admin/users/" + $this.data("id") + "/password";
+    }
+
     // 绑定事件
     function bindEvent() {
         $("#add_user").click(jumpToCreateUser);
@@ -31,6 +37,7 @@
         var $userTable = $(".user-table");
         $userTable.on('click', "*[data-action=edit]", jumpToEditUser);
         $userTable.on('click', "*[data-action=delete]", deleteUser);
+        $userTable.on('click', "*[data-action=password]", jumpToResetPassword);
     }
 
     bindEvent();
