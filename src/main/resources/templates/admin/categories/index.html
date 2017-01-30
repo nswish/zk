@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="admin/layout/blank">
+<head>
+    <link rel="stylesheet" th:href="@{/css/categories/index.css(release=${@Constants.Release})}"/>
+</head>
+<body>
+    <div class="clearfix" layout:fragment="content">
+        <div class="first-category-section">
+            <table class="table table-bordered table-hover">
+                <tr class="active">
+                    <th th:colspan="2" style="text-align: center;">一级分类</th>
+                </tr>
+                <tr class="active">
+                    <th style="text-align: right; width: 30px;">#</th>
+                    <th>名称</th>
+                </tr>
+                <tr th:attr="data-id=${category.model.id}" th:each="category,iterStat : ${firstLevelCategories}" th:class="|first-level-category-row ${category.model.id==selectedCategoryId?'info':''}|">
+                    <td style="text-align: right;" th:text="${iterStat.index+1}"></td>
+                    <td th:text="${category.model.title}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="second-category-section">
+            <table class="table table-bordered table-hover">
+                <tr class="active">
+                    <th th:colspan="2" style="text-align: center;">二级分类</th>
+                </tr>
+                <tr class="active">
+                    <th style="text-align: right; width: 30px;">#</th>
+                    <th>名称</th>
+                </tr>
+                <tr th:each="category,iterStat : ${secondLevelCategories}">
+                    <td style="text-align: right;" th:text="${iterStat.index+1}"></td>
+                    <td th:text="${category.model.title}"></td>
+                </tr>
+            </table>
+
+            <div>
+                <button id="add_category" type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增二级分类
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div layout:fragment="jsScript">
+        <script th:src="@{/js/admin/categories/index.js(release=${@Constants.Release})}"></script>
+    </div>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package cn.edu.suibe.zk.domain;
 
+import cn.edu.suibe.zk.domain.domains.Category;
 import cn.edu.suibe.zk.domain.domains.User;
+import cn.edu.suibe.zk.domain.repositories.CategoryRepository;
 import cn.edu.suibe.zk.domain.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +16,9 @@ public class DomainConfigure {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Bean(name = "authenticate")
     @Scope("prototype")
@@ -41,5 +46,19 @@ public class DomainConfigure {
     @Lazy
     User findUserById(int id) {
         return User.findUserById(this.userRepository, id);
+    }
+
+    @Bean(name = "findFirstLevelCategories")
+    @Scope("prototype")
+    @Lazy
+    Category[] findFirstLevelCategories() {
+        return Category.findFirstLevelCategories(categoryRepository);
+    }
+
+    @Bean(name = "findSecondLevelCategories")
+    @Scope("prototype")
+    @Lazy
+    Category[] findFirstLevelCategories(int firstLevelCategoryId) {
+        return Category.findSecondLevelCategories(categoryRepository, firstLevelCategoryId);
     }
 }
