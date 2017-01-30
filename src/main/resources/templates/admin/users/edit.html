@@ -31,6 +31,24 @@
                     <input type="text" class="form-control" id="telephone" placeholder="电话" th:field="*{telephone}"/>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">审核状态</label>
+                <div class="col-sm-9">
+                    <select class="form-control" th:field="*{state}">
+                        <option th:value="${@Constants.UserState.UNAUDIT}" th:text="未审核">未审核</option>
+                        <option th:value="${@Constants.UserState.AUDITED}" th:text="已审核">已审核</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">用户类别</label>
+                <div class="col-sm-9">
+                    <select class="form-control" th:field="*{roleid}">
+                        <option th:value="${@Constants.UserRole.MEMBER}" th:text="会员">会员</option>
+                        <option th:value="${@Constants.UserRole.ADMIN}" th:text="管理员">管理员</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group clear-margin-bottom">
                 <div class="col-sm-offset-3 col-sm-9">
                     <button id="save" type="submit" class="btn btn-primary btn-sm">保存</button>

@@ -16,7 +16,17 @@ public class UserModel {
     private String trueName;
     private String email;
     private String telephone;
+
+    /**
+     * 用户角色
+     * 0 - 会员 | 1 - 管理员
+     */
     private int roleid;
+
+    /**
+     * 用户状态
+     * 0 - 未审核 | 1 - 已审核
+     */
     private int state;
 
     public long getId() {

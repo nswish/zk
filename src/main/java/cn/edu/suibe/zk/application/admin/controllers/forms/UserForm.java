@@ -15,13 +15,17 @@ public class UserForm {
     @Size(min = 1, message = "必须设置密码!")
     private String password;
 
+    private String password2;
+
     private String trueName;
 
-    @Pattern(regexp = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])", message = "邮箱地址格式不正确!")
     private String email;
 
-    @Pattern(regexp = "\\d+", message = "电话的格式不正确!")
     private String telephone;
+
+    private int roleid;
+
+    private int state;
 
     public int getId() {
         return id;
@@ -47,6 +51,14 @@ public class UserForm {
         this.password = password;
     }
 
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
+
     public String getTrueName() {
         return trueName;
     }
@@ -69,5 +81,21 @@ public class UserForm {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public int getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

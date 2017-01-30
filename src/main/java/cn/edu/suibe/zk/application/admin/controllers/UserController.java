@@ -1,6 +1,7 @@
 package cn.edu.suibe.zk.application.admin.controllers;
 
 import cn.edu.suibe.zk.application.admin.controllers.forms.UserForm;
+import cn.edu.suibe.zk.common.configures.Constants;
 import cn.edu.suibe.zk.domain.domains.User;
 import cn.edu.suibe.zk.domain.models.UserModel;
 import org.springframework.beans.factory.BeanFactory;
@@ -32,6 +33,8 @@ public class UserController {
 
     @RequestMapping(value = "/admin/users/create", method = RequestMethod.GET)
     public String showCreate(UserForm userForm) {
+        userForm.setState(Constants.USER_STATE.AUDITED);
+        userForm.setRoleid(Constants.USER_ROLE.MEMBER);
         return "/admin/users/create";
     }
 
@@ -39,6 +42,12 @@ public class UserController {
     public String saveCreate(@Valid UserForm userForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("message", bindingResult.getFieldError().getDefaultMessage());
+            redirectAttributes.addFlashAttribute("userForm", userForm);
+            return "redirect:/admin/users/create";
+        }
+
+        if(!userForm.getPassword().equals(userForm.getPassword2())) {
+            redirectAttributes.addFlashAttribute("message", "2次输入的密码不一致!");
             redirectAttributes.addFlashAttribute("userForm", userForm);
             return "redirect:/admin/users/create";
         }
@@ -51,6 +60,8 @@ public class UserController {
         model.setTrueName(userForm.getTrueName());
         model.setEmail(userForm.getEmail());
         model.setTelephone(userForm.getTelephone());
+        model.setState(userForm.getState());
+        model.setRoleid(userForm.getRoleid());
 
         try {
             newUser.save();
@@ -73,6 +84,8 @@ public class UserController {
         userForm.setTrueName(model.getTrueName());
         userForm.setEmail(model.getEmail());
         userForm.setTelephone(model.getTelephone());
+        userForm.setState(model.getState());
+        userForm.setRoleid(model.getRoleid());
 
         return "/admin/users/edit";
     }
@@ -85,6 +98,8 @@ public class UserController {
         model.setTrueName(userForm.getTrueName());
         model.setEmail(userForm.getEmail());
         model.setTelephone(userForm.getTelephone());
+        model.setState(userForm.getState());
+        model.setRoleid(userForm.getRoleid());
 
         user.save();
 
