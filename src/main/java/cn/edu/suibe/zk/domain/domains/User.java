@@ -11,6 +11,7 @@ import java.util.stream.StreamSupport;
 
 public class User {
     public static final User AUTHENTICATE_FAILED_USER = new User(null);
+    public static final User AUTHENTICATE_NOTFOUND_USER = new User(null);
 
     private UserModel model;
 
@@ -71,6 +72,11 @@ public class User {
      */
     public static User findUserById(UserRepository userRepository, int id) {
         UserModel userModel = userRepository.findById(id);
+
+        if(userModel == null) {
+            return AUTHENTICATE_NOTFOUND_USER;
+        }
+
         return new User(userModel);
     }
 

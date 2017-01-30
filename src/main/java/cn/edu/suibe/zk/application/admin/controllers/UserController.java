@@ -2,6 +2,7 @@ package cn.edu.suibe.zk.application.admin.controllers;
 
 import cn.edu.suibe.zk.application.admin.controllers.forms.UserForm;
 import cn.edu.suibe.zk.common.configures.Constants;
+import cn.edu.suibe.zk.common.exceptions.ApplicationException;
 import cn.edu.suibe.zk.domain.domains.User;
 import cn.edu.suibe.zk.domain.models.UserModel;
 import org.springframework.beans.factory.BeanFactory;
@@ -40,117 +41,160 @@ public class UserController {
 
     @RequestMapping(value = "/admin/users/create", method = RequestMethod.POST)
     public String saveCreate(@Valid UserForm userForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("message", bindingResult.getFieldError().getDefaultMessage());
-            redirectAttributes.addFlashAttribute("userForm", userForm);
-            return "redirect:/admin/users/create";
-        }
-
-        if(!userForm.getPassword().equals(userForm.getPassword2())) {
-            redirectAttributes.addFlashAttribute("message", "2次输入的密码不一致!");
-            redirectAttributes.addFlashAttribute("userForm", userForm);
-            return "redirect:/admin/users/create";
-        }
-
-        User newUser = beanFactory.getBean("newUser", User.class);
-
-        UserModel model = newUser.getModel();
-        model.setUserName(userForm.getUserName());
-        model.setPassword(User.convertPassword(userForm.getPassword()));
-        model.setTrueName(userForm.getTrueName());
-        model.setEmail(userForm.getEmail());
-        model.setTelephone(userForm.getTelephone());
-        model.setState(userForm.getState());
-        model.setRoleid(userForm.getRoleid());
-
         try {
+            if(bindingResult.hasErrors()) {
+                throw new ApplicationException(bindingResult.getFieldError().getDefaultMessage());
+            }
+
+            if(!userForm.getPassword().equals(userForm.getPassword2())) {
+                throw new ApplicationException("2次输入的密码不一致!");
+            }
+
+            User newUser = beanFactory.getBean("newUser", User.class);
+
+            UserModel model = newUser.getModel();
+            model.setUserName(userForm.getUserName());
+            model.setPassword(User.convertPassword(userForm.getPassword()));
+            model.setTrueName(userForm.getTrueName());
+            model.setEmail(userForm.getEmail());
+            model.setTelephone(userForm.getTelephone());
+            model.setState(userForm.getState());
+            model.setRoleid(userForm.getRoleid());
+
             newUser.save();
 
             redirectAttributes.addFlashAttribute("message", String.format("用户[%s]已保存!", userForm.getUserName()));
             return "redirect:/admin/users";
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            redirectAttributes.addFlashAttribute("userForm", userForm);
             return "redirect:/admin/users/create";
         }
     }
 
     @RequestMapping(value = "/admin/users/{id}/edit", method = RequestMethod.GET)
-    public String showEdit(@PathVariable int id, UserForm userForm) {
-        User user = (User)beanFactory.getBean("findUserById", id);
-        UserModel model = user.getModel();
+    public String showEdit(@PathVariable int id, UserForm userForm, RedirectAttributes redirectAttributes) {
+        try {
+            User user = (User)beanFactory.getBean("findUserById", id);
 
-        userForm.setId(id);
-        userForm.setUserName(model.getUserName());
-        userForm.setTrueName(model.getTrueName());
-        userForm.setEmail(model.getEmail());
-        userForm.setTelephone(model.getTelephone());
-        userForm.setState(model.getState());
-        userForm.setRoleid(model.getRoleid());
+            if(user == User.AUTHENTICATE_NOTFOUND_USER) {
+                throw new ApplicationException("数据库中已无此用户");
+            }
 
-        return "/admin/users/edit";
+            UserModel model = user.getModel();
+
+            userForm.setId(id);
+            userForm.setUserName(model.getUserName());
+            userForm.setTrueName(model.getTrueName());
+            userForm.setEmail(model.getEmail());
+            userForm.setTelephone(model.getTelephone());
+            userForm.setState(model.getState());
+            userForm.setRoleid(model.getRoleid());
+
+            return "/admin/users/edit";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            return "redirect:/admin/users";
+        }
     }
 
     @RequestMapping(value ="/admin/users/{id}/edit", method = RequestMethod.POST)
     public String saveEdit(@PathVariable int id, UserForm userForm, RedirectAttributes redirectAttributes) {
-        User user = (User)beanFactory.getBean("findUserById", id);
-        UserModel model = user.getModel();
+        try {
+            User user = (User)beanFactory.getBean("findUserById", id);
 
-        model.setTrueName(userForm.getTrueName());
-        model.setEmail(userForm.getEmail());
-        model.setTelephone(userForm.getTelephone());
-        model.setState(userForm.getState());
-        model.setRoleid(userForm.getRoleid());
+            if(user == User.AUTHENTICATE_NOTFOUND_USER) {
+                throw new ApplicationException("数据库中已无此用户");
+            }
 
-        user.save();
+            UserModel model = user.getModel();
 
-        redirectAttributes.addFlashAttribute("message", "用户信息已修改!");
-        return String.format("redirect:/admin/users/%d/edit", id);
+            model.setTrueName(userForm.getTrueName());
+            model.setEmail(userForm.getEmail());
+            model.setTelephone(userForm.getTelephone());
+            model.setState(userForm.getState());
+            model.setRoleid(userForm.getRoleid());
+
+            user.save();
+
+            redirectAttributes.addFlashAttribute("userForm", userForm);
+            redirectAttributes.addFlashAttribute("message", "用户信息已修改!");
+            return String.format("redirect:/admin/users/%d/edit", id);
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("userForm", userForm);
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            return String.format("redirect:/admin/users/%d/edit", id);
+        }
     }
 
     @RequestMapping(value = "/admin/users/{id}/delete", method = RequestMethod.POST)
     public String deleteUser(@PathVariable int id, RedirectAttributes redirectAttributes) {
-        User user = (User)beanFactory.getBean("findUserById", id);
+        try {
+            User user = (User)beanFactory.getBean("findUserById", id);
 
-        user.delete();
+            if(user != User.AUTHENTICATE_NOTFOUND_USER) {
+                user.delete();
+            }
 
-        redirectAttributes.addFlashAttribute("message", String.format("用户[%s]已删除!", user.getModel().getUserName()));
-
-        return "redirect:/admin/users";
+            redirectAttributes.addFlashAttribute("message", String.format("用户[%s]已删除!", user.getModel().getUserName()));
+            return "redirect:/admin/users";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            return "redirect:/admin/users";
+        }
     }
 
     @RequestMapping(value = "/admin/users/{id}/password", method = RequestMethod.GET)
-    public String showResetPassword(@PathVariable int id, UserForm userForm) {
-        User user = (User)beanFactory.getBean("findUserById", id);
-        UserModel model = user.getModel();
+    public String showResetPassword(@PathVariable int id, UserForm userForm, RedirectAttributes redirectAttributes) {
+        try {
+            User user = (User)beanFactory.getBean("findUserById", id);
 
-        userForm.setUserName(model.getUserName());
+            if(user == User.AUTHENTICATE_NOTFOUND_USER) {
+                throw new ApplicationException("数据库中已无此用户");
+            }
 
-        return "/admin/users/password";
+            UserModel model = user.getModel();
+
+            userForm.setUserName(model.getUserName());
+
+            return "/admin/users/password";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            return "redirect:/admin/users";
+        }
     }
 
     @RequestMapping(value ="/admin/users/{id}/password", method = RequestMethod.POST)
     public String saveResetPassword(@PathVariable int id, @Valid UserForm userForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("message", bindingResult.getFieldError().getDefaultMessage());
+        try {
+            if(bindingResult.hasErrors()) {
+                throw new ApplicationException(bindingResult.getFieldError().getDefaultMessage());
+            }
+
+            if(!userForm.getPassword().equals(userForm.getPassword2())) {
+                throw new ApplicationException("2次输入的密码不一致");
+            }
+
+            User user = (User)beanFactory.getBean("findUserById", id);
+
+            if(user == User.AUTHENTICATE_NOTFOUND_USER) {
+                throw new ApplicationException("数据库中已无此用户");
+            }
+
+            UserModel model = user.getModel();
+
+            model.setPassword(User.convertPassword(userForm.getPassword()));
+
+            user.save();
+
             redirectAttributes.addFlashAttribute("userForm", userForm);
+            redirectAttributes.addFlashAttribute("message", "新密码已设置!");
+            return String.format("redirect:/admin/users/%d/password", id);
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("userForm", userForm);
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
             return String.format("redirect:/admin/users/%d/password", id);
         }
-
-        if(!userForm.getPassword().equals(userForm.getPassword2())) {
-            redirectAttributes.addFlashAttribute("message", "2次输入的密码不一致!");
-            redirectAttributes.addFlashAttribute("userForm", userForm);
-            return String.format("redirect:/admin/users/%d/password", id);
-        }
-
-        User user = (User)beanFactory.getBean("findUserById", id);
-        UserModel model = user.getModel();
-
-        model.setPassword(User.convertPassword(userForm.getPassword()));
-
-        user.save();
-
-        redirectAttributes.addFlashAttribute("message", "新密码已设置!");
-        return String.format("redirect:/admin/users/%d/password", id);
     }
 
 }
