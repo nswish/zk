@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <title>后台管理-上海对外经贸大学-高校智库</title>
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css(release=${@Constants.Release})}"/>
+    <link rel="stylesheet" th:href="@{/css/common.css(release=${@Constants.Release})}"/>
 </head>
 <body>
     <nav class="navbar navbar-default">
