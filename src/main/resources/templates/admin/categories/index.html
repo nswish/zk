@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="admin/layout/blank">
 <head>
-    <link rel="stylesheet" th:href="@{/css/categories/index.css(release=${@Constants.Release})}"/>
+    <link rel="stylesheet" th:href="@{/css/admin/categories/index.css(release=${@Constants.Release})}"/>
 </head>
 <body>
     <div class="clearfix" layout:fragment="content">
@@ -37,7 +37,7 @@
             </table>
 
             <div>
-                <button id="add_category" type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+                <button id="add_category" th:attr="data-id=${selectedCategoryId}" type="button" class="btn btn-default btn-sm" aria-label="Left Align">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增二级分类
                 </button>
             </div>

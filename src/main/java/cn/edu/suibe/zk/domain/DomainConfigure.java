@@ -61,4 +61,11 @@ public class DomainConfigure {
     Category[] findFirstLevelCategories(int firstLevelCategoryId) {
         return Category.findSecondLevelCategories(categoryRepository, firstLevelCategoryId);
     }
+
+    @Bean(name = "newCategory")
+    @Scope("prototype")
+    @Lazy
+    Category newCategory() {
+        return Category.newCategory();
+    }
 }

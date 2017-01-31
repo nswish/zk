@@ -40,6 +40,26 @@ public class Category {
                 .toArray(Category[]::new);
     }
 
+    /**
+     * 创建一个空的分类对象
+     *
+     * @return
+     */
+    public static Category newCategory() {
+        return new Category(new CategoryModel());
+    }
+
+    /**
+     * 保存分类信息
+     */
+    public void save() {
+        if(this.model.getId() == 0) {
+            int count = this.categoryRepository.countByParentId(this.model.getParentId());
+            this.model.setOrderId(count + 1);
+            this.categoryRepository.save(this.model);
+        }
+    }
+
     public Category(CategoryModel model) {
         this.model = model;
     }
